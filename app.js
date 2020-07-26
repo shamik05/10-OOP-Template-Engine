@@ -9,8 +9,69 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const employees = [];
+const questions = [
+    {
+        type: 'input',
+        name: 'name',
+        message: `What is your manager's name?`,
+        validate: input=>{
+            return input !== '' || "Name cannot be empty";
+        },
+        default: "Thomas Anderson"
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: `What is your manager's id?`,
+        validate: input=>{
+            if(input>0 || typeof(input) == NaN ){
+                return true;
+            }else{
+                return "Id has to be a positive number."
+            }
+        },
+        default: "5"
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: `What is your manager's email?`,
+        validate: input=>{
+            return input !== '' || "Email cannot be empty";
+        },
+        default: "thomasanderson@matrix.com",
+    },
+    {
+        type: 'number',
+        name: 'officeNumber',
+        message: `What is your manager's office number?`,
+        validate: input=>{
+            if(input>0 || typeof(input) == NaN ){
+                return true;
+            }else{
+                return "Id has to be a positive number."
+            }
+        },
+        default: "420",   
+    },
+]
 
+function init() {
+    console.log("Please build your team")
+    inquirer
+    .prompt(questions)
+    .then(function(data){
+        // console.log(data);
+        let employee = new Manager(data.name,data.id,data.email,data.officeNumber);
+        employees.push(employee);
+        console.log(employees);
+        console.log(render(employees));
 
+    })
+}
+
+init();
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
