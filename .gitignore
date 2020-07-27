@@ -104,3 +104,6 @@ dist
 .tern-port
 Instructions.md
 package-lock.json
+questionsE.js
+questionsI.js
+questionsR.js
