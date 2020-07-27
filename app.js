@@ -1,3 +1,4 @@
+"use strict";
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -9,65 +10,44 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+const {manager,engineer,intern,setQ, role} = require("./questions");
 const employees = [];
-const questions = [
-    {
-        type: 'input',
-        name: 'name',
-        message: `What is your manager's name?`,
-        validate: input=>{
-            return input !== '' || "Name cannot be empty";
-        },
-        default: "Thomas Anderson"
-    },
-    {
-        type: 'input',
-        name: 'id',
-        message: `What is your manager's id?`,
-        validate: input=>{
-            if(input>0 || typeof(input) == NaN ){
-                return true;
-            }else{
-                return "Id has to be a positive number."
-            }
-        },
-        default: "5"
-    },
-    {
-        type: 'input',
-        name: 'email',
-        message: `What is your manager's email?`,
-        validate: input=>{
-            return input !== '' || "Email cannot be empty";
-        },
-        default: "thomasanderson@matrix.com",
-    },
-    {
-        type: 'number',
-        name: 'officeNumber',
-        message: `What is your manager's office number?`,
-        validate: input=>{
-            if(input>0 || typeof(input) == NaN ){
-                return true;
-            }else{
-                return "Id has to be a positive number."
-            }
-        },
-        default: "420",   
-    },
-]
 
-function init() {
-    console.log("Please build your team")
-    inquirer
-    .prompt(questions)
-    .then(function(data){
-        // console.log(data);
-        let employee = new Manager(data.name,data.id,data.email,data.officeNumber);
+const init = async () => {
+    console.log("Please build your team");
+    try{
+        let employee = new Manager(...Object.values(
+            await inquirer.prompt(
+                setQ("manager",employees).concat(manager)
+                )
+            )
+        );
+        employees.push(employee); 
+        // const {nextType} = await inquirer.prompt(role);
+        // console.log(nextType);
+    }
+    catch(err){
+        throw err;
+    }
+
+    try{
+        const x = await inquirer.prompt(role);
+        console.log(x);
+
+        let employee = new Engineer(...Object.values(await inquirer.prompt(setQ("engineer",employees).concat(engineer))));
         employees.push(employee);
-        console.log(employees);
-        console.log(render(employees));
 
+        let employee1 = new Intern(...Object.values(await inquirer.prompt(setQ("Intern",employees).concat(intern))));
+        employees.push(employee1);
+    }
+    catch(err){
+        throw err;
+    }
+    console.log(employees);
+    fs.writeFile(outputPath,render(employees),function(err){
+        if(err){
+            throw err;
+        }
     })
 }
 
