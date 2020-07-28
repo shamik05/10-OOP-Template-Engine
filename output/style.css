@@ -4,30 +4,66 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+.container-fluid {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+    padding: 0;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+#roster {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 0;
+}
+
+/* Jumbotron */
 .jumbotron {
     background-color: #e84855;
     color: white;
+    width: 100%;
+    margin-bottom: 50px;
 }
 
+.table-row {
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+/* Cards */
 .card {
     box-shadow: 10px 10px 5px grey;
     width: 350px;
-    margin-left: 50px;
-    margin-top: 50px;
+    /* margin-left: 50px; */
+    margin-bottom: 50px;
 }
 
-.card:hover {
-    animation: shake 0.5s;
-    animation-iteration-count: 1; 
+.card + .card {
+    margin-left: 30px;
 }
 
+/* Card Header with name and role */
 .card-header {
     background-color: rgb(0 119 247);
     color: white;
 }
 
+/* Card body with additional role info */
 .card-body {
-    font-weight: 700;
+    font-weight: 750;
+}
+
+/* Animation shake on hover */
+.card:hover {
+    animation: shake 0.5s;
+    animation-iteration-count: 1; 
 }
 
 @keyframes shake {
@@ -43,3 +79,15 @@
     90% { transform: translate(1px, 2px) rotate(0deg); }
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
+
+.manager {
+    background-color: #0077f7;
+}
+
+.engineer {
+    background-color: #ff9000;
+}
+
+.intern {
+    background-color: #840fff;
+}
