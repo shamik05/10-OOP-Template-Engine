@@ -18,12 +18,6 @@ body,
     margin-bottom: 50px;
 }
 
-#roster {
-    padding-left: 25px;
-    padding-right: 25px;
-    margin: 0;
-}
-
 /* Jumbotron */
 .jumbotron {
     background-color: #e84855;
@@ -32,9 +26,15 @@ body,
     margin-bottom: 50px;
 }
 
+/* Roster */
 .table-row {
     margin-left: 25px;
     margin-right: 25px;
+}
+#roster {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin: 0;
 }
 
 /* Cards */
@@ -80,14 +80,17 @@ body,
     100% { transform: translate(1px, -2px) rotate(-1deg); }
   }
 
+/* Manager role */
 .manager {
     background-color: #0077f7;
 }
 
+/* Engineer role */
 .engineer {
     background-color: #ff9000;
 }
 
+/* Intern role */
 .intern {
     background-color: #840fff;
 }
