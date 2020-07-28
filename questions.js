@@ -1,15 +1,18 @@
+// Function that accepts a role and the employees array for validation
+// First three questions are universal to all employees
 const setQ = (role,check) => {
     return [
-    {
+    {   
+        // Asks for employee name and field cannot be empty
         type: 'input',
         name: 'name',
         message: `What is your ${role}'s name?`,
         validate: input=>{
             return input !== '' || "Name cannot be empty.";
         },
-        default: "Neo"
     },
-    {
+    {   
+        // Asks for a unique employee id, a positive number and field cannot be empty
         type: 'input',
         name: 'id',
         message: `What is your ${role}'s id?`,
@@ -26,9 +29,9 @@ const setQ = (role,check) => {
                 return true;
             }
         },
-        default: "5"
     },
-    {
+    {   
+        // Asks for a unique email address and field cannot be empty
         type: 'input',
         name: 'email',
         message: `What is your ${role}'s email?`,
@@ -41,10 +44,10 @@ const setQ = (role,check) => {
                 return true;
             }   
         },
-        default: "thomasanderson@matrix.com",
     },
 ]
 }
+// Asks if you want to add more members or terminate
 const role = [
     {
         type: 'list',
@@ -56,8 +59,11 @@ const role = [
         "I don't want to add any more team members.",
     ]},
 ]
+
+// Manager question only
 const manager = [
-    {
+    {   
+        // Asks for the office number and cannot be empty
         type: 'input',
         name: 'officeNumber',
         message: `What is your manager's office number?`,
@@ -68,29 +74,33 @@ const manager = [
                 return true;
             }   
         },
-        default: "420",   
     },
 ]
+
+// Engineer question only
 const engineer = [
-    {
+    {   
+        // Asks for github username and cannot be empty
         type: 'input',
         name: 'github',
         message: `What is your engineer's GitHub username?`,
         validate: input=>{
             return input !== '' || "Github username cannot be empty.";
         },
-        default: "morpheus420",   
     },
 ]
+
+// Intern question only
 const intern = [
-    {
+    {   
+        // Asks for attended school and cannot be empty
         type: 'input',
         name: 'school',
         message: `What is your intern's school?`,
         validate: input=>{
             return input !== '' || "School cannot be empty.";
-        },
-        default: "hardknocks",   
+        },  
     },
 ]
+
 module.exports = {manager,role,engineer,intern,setQ};

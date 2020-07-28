@@ -1,4 +1,5 @@
 // "use strict";
+// Import classes and modules
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -10,55 +11,79 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+
+// Import questions for inquirer
 const {manager,engineer,intern,setQ, role} = require("./questions");
+
+// An array to hold all created employees
 const employees = [];
 
+// Function to generate team members
 const members = async ()=>{
+    
+    // Import question asking for next member
     const {nextType} = await inquirer.prompt(role);
-    console.log(nextType);
+    // console.log(nextType);
+    
+    // If engineer is chosen
     if(nextType === "Engineer"){
+        // Create engineer class 
         let employee = new Engineer(...Object.values
+            // Ask general employee questions with engineer specific question
             (await inquirer.prompt(
                 setQ("engineer",employees).concat(engineer)
                 )
             )
         );
+        // Push the newly created employee in employees array
         employees.push(employee);
-        console.log(employees);
-
+        // console.log(employees);
+    
+    // If intern is chosen
     }else if(nextType === "Intern"){
-        let employee1 = new Intern(...Object.values
+        // Create intern class
+        let employee = new Intern(...Object.values
+            // Ask general employee questions with intern specific question
             (await inquirer.prompt(
                 setQ("Intern",employees).concat(intern)
                 )
             )
         );
-        employees.push(employee1);
-        console.log(employees);
+        // Push the newly created employee in employees array
+        employees.push(employee);
+        // console.log(employees);
 
     }else{
+        // If none are chosen, break from this function
         return;
     }
+    // Rerun the function to choose team members
     await members(); 
 }
 
+// Main function to make a manager
 const init = async () => {
     console.log("Please build your team");
     try{
+        // Create manager class 
         let employee = new Manager(...Object.values(
+            // Ask general employee questions with manager specific question
             await inquirer.prompt(
                 setQ("manager",employees).concat(manager)
                 )
             )
         );
+        // Push the newly created employee in employees array
         employees.push(employee); 
-        // const {nextType} = await inquirer.prompt(role);
-        // console.log(nextType);
+        
+        // Call function to add team members
         await members();
     }
     catch(err){
         throw err;
     }
+
+    // Create a html page using employees and template
     fs.writeFile(outputPath,render(employees),function(err){
         if(err){
             throw err;
@@ -67,7 +92,9 @@ const init = async () => {
     )
 }
 
+// Run main program
 init();
+
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
 
