@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
@@ -13,6 +13,35 @@ const render = require("./lib/htmlRenderer");
 const {manager,engineer,intern,setQ, role} = require("./questions");
 const employees = [];
 
+const members = async ()=>{
+    const {nextType} = await inquirer.prompt(role);
+    console.log(nextType);
+    if(nextType === "Engineer"){
+        let employee = new Engineer(...Object.values
+            (await inquirer.prompt(
+                setQ("engineer",employees).concat(engineer)
+                )
+            )
+        );
+        employees.push(employee);
+        console.log(employees);
+
+    }else if(nextType === "Intern"){
+        let employee1 = new Intern(...Object.values
+            (await inquirer.prompt(
+                setQ("Intern",employees).concat(intern)
+                )
+            )
+        );
+        employees.push(employee1);
+        console.log(employees);
+
+    }else{
+        return;
+    }
+    await members(); 
+}
+
 const init = async () => {
     console.log("Please build your team");
     try{
@@ -25,30 +54,17 @@ const init = async () => {
         employees.push(employee); 
         // const {nextType} = await inquirer.prompt(role);
         // console.log(nextType);
+        await members();
     }
     catch(err){
         throw err;
     }
-
-    try{
-        const x = await inquirer.prompt(role);
-        console.log(x);
-
-        let employee = new Engineer(...Object.values(await inquirer.prompt(setQ("engineer",employees).concat(engineer))));
-        employees.push(employee);
-
-        let employee1 = new Intern(...Object.values(await inquirer.prompt(setQ("Intern",employees).concat(intern))));
-        employees.push(employee1);
-    }
-    catch(err){
-        throw err;
-    }
-    console.log(employees);
     fs.writeFile(outputPath,render(employees),function(err){
         if(err){
             throw err;
         }
-    })
+    }
+    )
 }
 
 init();
