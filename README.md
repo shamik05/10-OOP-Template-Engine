@@ -23,14 +23,14 @@ in any command line interface. Answer the prompts as appropriate and the final p
 
 ### Demo
 
-![Demo](Assets\demo.gif)
+![Demo](Assets/demo.gif)
 
 ### Test Suite
-![Tests](Assets\tests.gif)
+![Tests](Assets/tests.gif)
 
 
 ### Validation & Constraints
-![Validation](Assets\validation.gif)
+![Validation](Assets/validation.gif)
 
 ## License 
 The project is currently licenseless.
