@@ -1,7 +1,7 @@
 # Homework-10-OOP-Template-Engine-Employee-Summary
 ![GitHub License](https://img.shields.io/badge/License-None-blue)
 ## Description
-A CLI application that generates employee cards using node.
+A CLI application that generates a roster of employee cards. Currently, it builds a roster of one manager and indefinite number of engineers and interns using user prompts. The backend has a focus on object oriented programming to create an assortment of subclasses extending from the main employee class. Cards can easily be modified to adjust roles and fields for each employee. It was built on node using inquirer and the filesystem modules.
 ## Table of Contents
 * [Installation](#Installation)
 * [Usage](#Usage)
@@ -15,11 +15,18 @@ To install necessary dependencies, run the following command:
 npm i
 ```
 ## Usage 
-Extract the repo and use node app.js
+Download or clone the repo to a working directory. Extract its contents and run 
+```
+node app.js
+```
+in any command line interface. Answer the prompts as appropriate and the final product is a HTML page in the output directory.
+ 
+![Demo]("./Assets/Demo.gif")
+
 ## License 
-The project is licensed under the None license.
+The project is currently licenseless.
 ## Contributing
-Message the owner 
+Message the owner on github or by email.
 ## Tests
 To run tests, run the following command:
 ```
