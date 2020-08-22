@@ -23,7 +23,7 @@ const members = async ()=>{
     
     // Import question asking for next member
     const {nextType} = await inquirer.prompt(role);
-    // console.log(nextType);
+    console.log("\u001b[2m───────────────────────────────────────────────\u001b[22m");
     
     // If engineer is chosen
     if(nextType === "Engineer"){
@@ -35,6 +35,7 @@ const members = async ()=>{
                 )
             )
         );
+        console.log("\u001b[2m───────────────────────────────────────────────\u001b[22m");
         // Push the newly created employee in employees array
         employees.push(employee);
         // console.log(employees);
@@ -49,6 +50,7 @@ const members = async ()=>{
                 )
             )
         );
+        console.log("\u001b[2m───────────────────────────────────────────────\u001b[22m");
         // Push the newly created employee in employees array
         employees.push(employee);
         // console.log(employees);
@@ -73,6 +75,7 @@ const init = async () => {
                 )
             )
         );
+        console.log("\u001b[2m───────────────────────────────────────────────\u001b[22m");
         // Push the newly created employee in employees array
         employees.push(employee); 
         
@@ -82,7 +85,7 @@ const init = async () => {
     catch(err){
         throw err;
     }
-
+    console.log("Generating your Team.")
     // Create a html page using employees and template
     fs.writeFile(outputPath,render(employees),function(err){
         if(err){
@@ -90,6 +93,7 @@ const init = async () => {
         }
     }
     )
+    console.log("File team.HTML generated in the ./output folder")
 }
 
 // Run main program
