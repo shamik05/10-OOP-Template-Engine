@@ -20,8 +20,17 @@ Download or clone the repo to a working directory. Extract its contents and run
 node app.js
 ```
 in any command line interface. Answer the prompts as appropriate and the final product is a HTML page in the output directory.
- 
-![Demo]("./Assets/Demo.gif")
+
+### Demo
+
+![Demo](Assets\demo.gif)
+
+### Test Suite
+![Tests](Assets\tests.gif)
+
+
+### Validation & Constraints
+![Validation](Assets\validation.gif)
 
 ## License 
 The project is currently licenseless.
